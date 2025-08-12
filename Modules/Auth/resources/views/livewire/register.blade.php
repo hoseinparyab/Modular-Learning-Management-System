@@ -9,13 +9,16 @@
 							<!-- Title -->
 							<h2 class="">ثبت نام</h2>
 							<!-- Form START -->
-							<form>
+							<form wire:submit="RegisterUser">
 								<!-- Email -->
 								<div class="mb-4">
 									<label for="exampleInputEmail1" class="form-label">ایمیل</label>
 									<div class="input-group input-group-lg">
 										<span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="bi bi-envelope-fill"></i></span>
-										<input type="email" class="form-control border-0 bg-light rounded-end ps-1" placeholder="***@gmail.com" id="exampleInputEmail1">
+										<input wire:model="email" type="email" class="form-control border-0 bg-light rounded-end ps-1" placeholder="***@gmail.com" id="exampleInputEmail1">
+                                        @error('email')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
 									</div>
 								</div>
 								<!-- Password -->
@@ -23,7 +26,10 @@
 									<label for="inputPassword5" class="form-label">رمز عبور *</label>
 									<div class="input-group input-group-lg">
 										<span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="fas fa-lock"></i></span>
-										<input type="password" class="form-control border-0 bg-light rounded-end ps-1" placeholder="*********" id="inputPassword5">
+										<input wire:model="password" type="password" class="form-control border-0 bg-light rounded-end ps-1" placeholder="*********" id="inputPassword5">
+                                        @error('password')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
 									</div>
 								</div>
 								<!-- Confirm Password -->
@@ -31,14 +37,14 @@
 									<label for="inputPassword6" class="form-label">تایید رمز عبور *</label>
 									<div class="input-group input-group-lg">
 										<span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="fas fa-lock"></i></span>
-										<input type="password" class="form-control border-0 bg-light rounded-end ps-1" placeholder="*********" id="inputPassword6">
+										<input wire:model="password_confirmation" type="password" class="form-control border-0 bg-light rounded-end ps-1" placeholder="*********" id="inputPassword6">
 									</div>
 								</div>
 								<!-- Check box -->
 								<div class="mb-4">
 									<div class="form-check">
-										<input type="checkbox" class="form-check-input" id="checkbox-1">
-										<label class="form-check-label" for="checkbox-1">با ثبت نام <a href="#">شرایط و قوانین سایت</a> را خواهید پذیرفت.</label>
+										<input wire:model="remember" type="checkbox" class="form-check-input" id="checkbox-1">
+										<label class="form-check-label" for="checkbox-1">من را در به یاد داشته باش </label>
 									</div>
 								</div>
 								<!-- Button -->
@@ -51,7 +57,7 @@
 							<!-- Form END -->
 							<!-- Sign up link -->
 							<div class="mt-4 text-center">
-								<span>آیا قبلا ثبت نام کرده اید؟<a href="sign-in.html"> ورود</a></span>
+								<span>آیا قبلا ثبت نام کرده اید؟<a href="{{ route('login') }}"> ورود</a></span>
 							</div>
 						</div>
 					</div>
