@@ -1,34 +1,38 @@
 <?php
-
 namespace Modules\Auth\Livewire;
 
 use App\Models\User;
-use Livewire\Component;
 use Illuminate\Contracts\View\View;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Attributes\Rule;
+use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
+
 class Register extends Component
 {
+    #[Rule('required')]
     public $name;
-    #[Rule('required|email |unique:users,email')]
+    #[Rule('required|unique:users,email')]
     public $email;
-    #[Rule('required|min:8')]
+    #[Rule('required|min:6|confirmed')]
     public $password;
-    #[Rule('required|min:8|confirmed')]
     public $password_confirmation;
-    public $remember;
 
-
-    public function RegisterUser()
+    public function registerUser(): \Illuminate\Http\RedirectResponse
     {
         $this->validate();
-        $user =User::query()->create([ 'name' => $this->name,
-            'email' => $this->email,
-            'password' => Hash::make($this->password),
+
+        $user = User::query()->create([
+            'name'=>$this->name,
+            'email'=>$this->email,
+            'password'=>Hash::make($this->password),
         ]);
+
         Auth::login($user);
-       event(new Registered($user));
-       return redirect()->route('dashboard');
+        event(new Registered($user));
+        return redirect()->route('verification.send');
+
     }
     public function render(): View
     {
