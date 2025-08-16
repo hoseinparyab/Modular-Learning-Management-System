@@ -1,7 +1,7 @@
 <?php
 namespace Modules\Auth\Livewire;
 
-use App\Models\User;
+use Modules\Auth\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Rule;
