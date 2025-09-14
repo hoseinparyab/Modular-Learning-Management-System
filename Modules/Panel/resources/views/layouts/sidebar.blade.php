@@ -20,7 +20,7 @@
                         <i class="bi bi-house fa-fw me-2"></i>داشبورد</a>
                 </li>
                 <li class="nav-item">
-                    {{-- <a  href="{{route('panel.categories')}}" class="nav-link active"> --}}
+                    <a  href="{{route('panel.categories')}}" class="nav-link active">
                         <i class="bi bi-basket fa-fw me-2"></i>دسته بندی</a>
                 </li>
                 <li class="nav-item">

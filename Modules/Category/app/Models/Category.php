@@ -4,7 +4,7 @@ namespace Modules\Category\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-// use Modules\Category\Database\Factories\CategoryFactory;
+use Modules\Category\Database\factories\CategoryFactory;
 
 class Category extends Model
 {
@@ -15,22 +15,34 @@ class Category extends Model
      */
     protected $fillable = [
         'title',
-        'parent_id',
-
+        'parent_id'
     ];
-    public function parent()
-    {
-        return $this->belongsTo(Category::class, 'parent_id', 'id')
-            ->withDefault(['title' => 'بدون دسته بندی']);
-    }
-    public function child()
-    {
-        return $this->hasMany(Category::class, 'parent_id' ,'id');
 
+    protected $casts = [
+        'parent_id' => 'integer'
+    ];
+
+    public function parent(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+      return $this->belongsTo(self::class, 'parent_id','id')
+          ->withDefault(['title'=>'-------']);
     }
 
-    // protected static function newFactory(): CategoryFactory
-    // {
-    //     // return CategoryFactory::new();
-    // }
+    public function child(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+      return $this->hasMany(self::class,'parent_id','id');
+    }
+
+    protected static function boot(): void
+    {
+        parent::boot();
+        self::deleting(static function ($category) {
+            foreach($category->child()->get() as $child){
+                $child->update([
+                    'parent_id' => 0
+                ]);
+            }
+        });
+    }
+
 }
