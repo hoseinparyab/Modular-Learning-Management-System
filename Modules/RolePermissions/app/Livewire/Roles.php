@@ -30,7 +30,15 @@ class Roles extends Component
         $role->syncPermissions($this->user_permissions);
 
         $this->reset('name');
-        session()->flash('message', 'نقش ایجاد شد');
+        $this->dispatch('swal', [
+            'title'             => 'نقش با موفقیت ایجاد شد',
+            'timer'             => 3000,
+            'icon'              => 'success',
+            'toast'             => true,
+            'position'          => 'top-end',
+            'showConfirmButton' => false,
+        ]);
+
     }
 
     public function editRow($id)
@@ -54,14 +62,32 @@ class Roles extends Component
         $role->syncPermissions($this->user_permissions);
         $this->user_permissions = [];
         $this->reset('name');
-        session()->flash('message', 'نقش ویرایش شد');
         $this->editedIndex = null;
+        $this->dispatch('swal', [
+            'title'             => 'نقش با موفقیت ویرایش  شد',
+            'timer'             => 3000,
+            'icon'              => 'success',
+            'toast'             => true,
+            'position'          => 'top-end',
+            'showConfirmButton' => false,
+        ]);
+
     }
 
     #[On('destroy-role')]
     public function destroyRole($id)
     {
         Role::destroy($id);
+
+        $this->dispatch('swal', [
+            'title'             => 'نقش با موفقیت حذف شد',
+            'timer'             => 3000,
+            'icon'              => 'success',
+            'toast'             => true,
+            'position'          => 'top-end',
+            'showConfirmButton' => false,
+        ]);
+
     }
 
     #[Layout('panel::layouts.app'), Title('نقش ها')]
@@ -72,4 +98,3 @@ class Roles extends Component
         return view('rolepermissions::livewire.roles', compact('roles', 'permissions'));
     }
 }
-
