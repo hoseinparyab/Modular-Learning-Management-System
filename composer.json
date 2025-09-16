@@ -11,7 +11,8 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.6",
         "mhmiton/laravel-modules-livewire": "^5.2",
-        "nwidart/laravel-modules": "^11.0"
+        "nwidart/laravel-modules": "^11.0",
+        "spatie/laravel-permission": "^6.21"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

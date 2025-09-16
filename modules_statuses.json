@@ -2,5 +2,6 @@
     "Auth": true,
     "Panel": true,
     "User": true,
-    "Category": true
+    "Category": true,
+    "RolePermissions": true
 }
