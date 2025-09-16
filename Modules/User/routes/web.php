@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\User\Http\Controllers\UserController;
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('users', UserController::class)->names('user');
+
+Route::group(['middleware' => ['auth'], 'prefix' => 'panel'], function () {
+    Route::get('users', \Modules\User\Livewire\Users::class)->name('panel.users');
 });
