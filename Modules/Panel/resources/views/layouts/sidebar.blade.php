@@ -36,6 +36,14 @@
                         <i class="bi bi-person fa-fw me-2"></i>کاربر ها</a>
                 </li>
                 <li class="nav-item">
+                    <a  href="{{route('panel.courses')}}" class="nav-link active">
+                        <i class="bi bi-person fa-fw me-2"></i>دوره ها</a>
+                </li>
+                <li class="nav-item">
+                    <a  href="{{route('panel.teacher-courses')}}" class="nav-link active">
+                        <i class="bi bi-person fa-fw me-2"></i>دوره های مدرس</a>
+                </li>
+                <li class="nav-item">
                     {{-- <a  href="{{route('panel.courses')}}" class="nav-link active"> --}}
                         <i class="bi bi-person fa-fw me-2"></i>لیست دوره ها</a>
                 </li>

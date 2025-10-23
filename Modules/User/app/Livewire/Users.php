@@ -30,7 +30,7 @@ class Users extends Component
     #[Layout('panel::layouts.app'), Title('کاربران')]
     public function render(): View
     {
-        $users = User::query()->paginate(10);
+
         $roles = Role::query()->pluck('name');
         return view('user::livewire.users', compact('users', 'roles'));
     }
