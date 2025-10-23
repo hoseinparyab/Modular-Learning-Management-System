@@ -3,5 +3,6 @@
     "Panel": true,
     "User": true,
     "Category": true,
-    "RolePermissions": true
+    "RolePermissions": true,
+    "Course": true
 }
