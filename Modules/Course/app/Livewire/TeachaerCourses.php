@@ -3,11 +3,19 @@
 namespace Modules\Course\Livewire;
 
 use Livewire\Component;
+use Modules\Course\Models\Course;
+use Modules\Course\Enums\CourseStatus;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 
 class TeachaerCourses extends Component
 {
-    public function render()
+
+    protected $paginationTheme = 'bootstrap';
+    #[Layout('panel::layouts.app'), Title('دوره های من')]
+     public function render()
     {
-        return view('course::livewire.teachaer-courses');
+        $courses = Course::query()->where('user_id', auth()->user()->id)->paginate(10);
+        return view('course::livewire.teachaer-courses', compact('courses'));
     }
 }
