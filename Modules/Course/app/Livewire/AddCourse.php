@@ -10,7 +10,7 @@ use Livewire\WithFileUploads;
 use Modules\Category\Models\Category;
 use Modules\Course\app\Enums\CourseStatus;
 use Modules\Course\Models\Course;
-use Modules\Panel\app\Helpers\Helper;
+use Modules\Panel\app\Helpers\helper;
 
 class AddCourse extends Component
 {
@@ -55,7 +55,7 @@ class AddCourse extends Component
         $this->video->store("videos/courses/$course->title", 'public');
 
         session()->flash('message', 'دوره با موفقیت ثبت شد');
-        $this->redirectRoute('panel.teacher_courses');
+        $this->redirectRoute('panel.teacher-courses');
 
     }
 
