@@ -7,4 +7,5 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'panel'], function () {
     Route::get('teacher-courses', \Modules\Course\Livewire\TeachaerCourses::class)->name('panel.teacher-courses');
 Route::get('add_course', \Modules\Course\Livewire\AddCourse::class)->name('panel.add_course');
 
+
 });

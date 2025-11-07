@@ -1,10 +1,11 @@
 <?php
+
 namespace Modules\Course\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-// use Modules\Course\Database\Factories\CourseFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Course\Database\factories\CourseFactory;
+use Modules\User\app\Models\User;
 
 class Course extends Model
 {
@@ -14,29 +15,25 @@ class Course extends Model
      * The attributes that are mass assignable.
      */
     protected $fillable = [
-        'title',
-        'description',
-        'image',
-        'video',
-        'level',
-        'status',
-        'price',
-        'slug',
         'user_id',
         'category_id',
-
+        'title',
+        'slug',
+        'price',
+        'description',
+        'level',
+        'status',
+        'video',
+        'image'
     ];
 
-    // protected static function newFactory(): CourseFactory
-    // {
-    //     // return CourseFactory::new();
-    // }
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
+
+    // protected static function newFactory(): CourseFactory
+    // {
+    //     //return CourseFactory::new();
+    // }
 }
